@@ -10,6 +10,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation("com.google.code.gson:gson:2.10.1")
+}
+
 intellij {
     version.set("2024.1.7")
     type.set("IC")
