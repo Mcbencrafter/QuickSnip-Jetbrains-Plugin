@@ -3,6 +3,8 @@ package net.mcbencrafter.quicksnip.cache;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.intellij.util.ImageLoader;
+import com.intellij.util.SVGLoader;
+import com.intellij.util.ui.JBUI;
 import net.mcbencrafter.quicksnip.cache.type.CachedSnippet;
 import net.mcbencrafter.quicksnip.constants.QuickSnipConstants;
 import net.mcbencrafter.quicksnip.cache.type.CachedCategory;
@@ -65,7 +67,7 @@ public class InformationFetcher {
     public Image fetchIcon(String url)  {
         try {
             URL iconUrl = new URL(QuickSnipConstants.BASE_URL + url);
-            return ImageLoader.loadFromUrl(iconUrl);
+            return SVGLoader.load(iconUrl, JBUI.scale(1));
         } catch (IOException exception) {
             return null;
         }
