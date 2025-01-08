@@ -10,7 +10,7 @@ public class QuickSnipContainer {
 
     public QuickSnipContainer() {
         this.languageStoreService = new LanguageStoreService();
-        this.informationFetcher = new InformationFetcher();
+        this.informationFetcher = new InformationFetcher(this);
 
         this.languageStoreService.addCachedLanguages(
             this.informationFetcher.fetchLanguages()

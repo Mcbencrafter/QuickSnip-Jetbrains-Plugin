@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.intellij.util.ImageLoader;
 import com.intellij.util.SVGLoader;
 import com.intellij.util.ui.JBUI;
+import net.mcbencrafter.quicksnip.QuickSnipContainer;
 import net.mcbencrafter.quicksnip.cache.type.CachedSnippet;
 import net.mcbencrafter.quicksnip.constants.QuickSnipConstants;
 import net.mcbencrafter.quicksnip.cache.type.CachedCategory;
@@ -23,6 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InformationFetcher {
+
+    private final QuickSnipContainer quickSnipContainer;
+
+    public InformationFetcher(QuickSnipContainer quickSnipContainer) {
+        this.quickSnipContainer = quickSnipContainer;
+    }
 
     public List<CachedLanguage> fetchLanguages() {
         List<CachedLanguage> languages = new ArrayList<>();
@@ -51,6 +58,7 @@ public class InformationFetcher {
 
             for (LanguageResponse languageResponse : languageResponses) {
                 CachedLanguage cachedLanguage = new CachedLanguage(
+                        quickSnipContainer,
                         languageResponse.getLanguage(),
                         this.fetchIcon(languageResponse.getIconPath())
                 );
