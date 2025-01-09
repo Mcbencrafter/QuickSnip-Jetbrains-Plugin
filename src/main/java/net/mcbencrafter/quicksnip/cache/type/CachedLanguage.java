@@ -50,6 +50,13 @@ public class CachedLanguage {
         return this.getCachedCategories();
     }
 
+    public CachedCategory getCachedCategoryByName(String name) {
+        return cachedCategories.stream()
+                .filter(category -> category.name().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
+
     public List<CachedCategory> getCachedCategories() {
         return Collections.unmodifiableList(cachedCategories);
     }
