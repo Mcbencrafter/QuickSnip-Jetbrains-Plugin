@@ -13,6 +13,6 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-
+        <toolWindow id="Snippets" factoryClass="net.mcbencrafter.quicksnip.snippetbrowser.language.LanguageListToolWindow" anchor="right"/>
     </extensions>
 </idea-plugin>
