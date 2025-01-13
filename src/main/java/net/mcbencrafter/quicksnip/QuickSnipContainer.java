@@ -1,7 +1,8 @@
 package net.mcbencrafter.quicksnip;
 
-import net.mcbencrafter.quicksnip.cache.LanguageStoreService;
 import net.mcbencrafter.quicksnip.cache.InformationFetcher;
+import net.mcbencrafter.quicksnip.cache.LanguageStoreService;
+import net.mcbencrafter.quicksnip.cache.DefaultInformationFetcher;
 
 public class QuickSnipContainer {
 
@@ -10,7 +11,7 @@ public class QuickSnipContainer {
 
     public QuickSnipContainer() {
         this.languageStoreService = new LanguageStoreService();
-        this.informationFetcher = new InformationFetcher(this);
+        this.informationFetcher = new DefaultInformationFetcher(this);
 
         this.languageStoreService.addCachedLanguages(
             this.informationFetcher.fetchLanguages()
