@@ -19,22 +19,32 @@ public class LanguageListToolWindow implements ToolWindowFactory {
     private final QuickSnipContainer quickSnipContainer;
 
     public LanguageListToolWindow() {
-        this.quickSnipContainer = new QuickSnipContainer();
+        this.quickSnipContainer = new QuickSnipContainer(this);
     }
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         JPanel mainPanel = new JPanel(new BorderLayout());
+        this.addContentsToPanel(mainPanel);
 
+        Content content = toolWindow.getContentManager().getFactory().createContent(
+                mainPanel,
+                "",
+                false
+        );
+
+        toolWindow.getContentManager().addContent(content);
+    }
+
+    public void addContentsToPanel(JPanel panel) {
         JBList<CachedLanguage> languageList = new JBList<>(
-                quickSnipContainer.getLanguageStoreService().getCachedLanguages().stream()
-                        .toList()
+                quickSnipContainer.getLanguageStoreService().getCachedLanguages()
         );
 
         languageList.setCellRenderer(new LanguageListCellRenderer());
 
-        mainPanel.add(
-                new JScrollPane(languageList),
+        panel.add(
+                languageList,
                 BorderLayout.CENTER
         );
 
@@ -43,15 +53,7 @@ public class LanguageListToolWindow implements ToolWindowFactory {
                 return;
 
             CategoryListPanel categoryListPanel = new CategoryListPanel(language, quickSnipContainer);
-            categoryListPanel.showOnPanel(mainPanel);
+            categoryListPanel.showOnPanel(panel);
         });
-
-        Content content = toolWindow.getContentManager().getFactory().createContent(mainPanel, "", false);
-
-        toolWindow.getContentManager().addContent(content);
-    }
-
-    public QuickSnipContainer getQuickSnipContainer() {
-        return quickSnipContainer;
     }
 }

@@ -123,7 +123,7 @@ public class DefaultInformationFetcher implements InformationFetcher {
                     snippets.add(cachedSnippet);
                 }
 
-                CachedCategory cachedCategory = new CachedCategory(categoryName, snippets);
+                CachedCategory cachedCategory = new CachedCategory(name, categoryName, snippets);
                 categories.add(cachedCategory);
             }
         } catch (Exception exception) {
