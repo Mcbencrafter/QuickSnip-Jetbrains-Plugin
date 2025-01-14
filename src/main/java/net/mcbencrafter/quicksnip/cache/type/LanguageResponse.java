@@ -2,11 +2,11 @@ package net.mcbencrafter.quicksnip.cache.type;
 
 public class LanguageResponse {
 
-    String lang;
+    String name;
     String icon;
 
-    public LanguageResponse(String lang, String icon) {
-        this.lang = lang;
+    public LanguageResponse(String name, String icon) {
+        this.name = name;
         this.icon = icon;
     }
 
@@ -15,6 +15,6 @@ public class LanguageResponse {
     }
 
     public String getLanguage() {
-        return lang;
+        return name;
     }
 }

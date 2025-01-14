@@ -108,7 +108,7 @@ public class DefaultInformationFetcher implements InformationFetcher {
 
             for (int i = 0; i < categoryArray.size(); i++) {
                 JsonObject categoryObject = categoryArray.get(i).getAsJsonObject();
-                String categoryName = categoryObject.get("categoryName").getAsString();
+                String categoryName = categoryObject.get("name").getAsString();
                 JsonArray snippetsArray = categoryObject.getAsJsonArray("snippets");
 
                 List<CachedSnippet> snippets = new ArrayList<>();
