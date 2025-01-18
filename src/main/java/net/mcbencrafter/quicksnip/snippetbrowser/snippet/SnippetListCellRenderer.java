@@ -19,16 +19,13 @@ public class SnippetListCellRenderer extends DefaultListCellRenderer {
 
         JBLabel nameLabel = new JBLabel(snippet.name());
         JBLabel descriptionLabel = new JBLabel(snippet.description());
-        JBLabel authorLabel = new JBLabel("Author: " + snippet.author());
 
         nameLabel.setFont(new Font("Arial", Font.BOLD, 30));
         descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        authorLabel.setFont(new Font("Arial", Font.ITALIC, 18));
 
         panel.add(nameLabel);
 
         panel.add(descriptionLabel);
-        panel.add(authorLabel);
 
         panel.setBorder(JBUI.Borders.empty(5));
         panel.setOpaque(false);
