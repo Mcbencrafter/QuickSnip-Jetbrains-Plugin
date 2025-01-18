@@ -1,17 +1,17 @@
 package net.mcbencrafter.quicksnip.cache;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.intellij.util.SVGLoader;
 import com.intellij.util.ui.JBUI;
 import net.mcbencrafter.quicksnip.QuickSnipContainer;
-import net.mcbencrafter.quicksnip.cache.type.CachedSnippet;
-import net.mcbencrafter.quicksnip.constants.QuickSnipConstants;
 import net.mcbencrafter.quicksnip.cache.type.CachedCategory;
 import net.mcbencrafter.quicksnip.cache.type.CachedLanguage;
+import net.mcbencrafter.quicksnip.cache.type.CachedSnippet;
 import net.mcbencrafter.quicksnip.cache.type.LanguageResponse;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import net.mcbencrafter.quicksnip.constants.QuickSnipConstants;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -74,7 +74,7 @@ public class DefaultInformationFetcher implements InformationFetcher {
     }
 
     @Override
-    public Image fetchLanguageIcon(String name)  {
+    public Image fetchLanguageIcon(String name) {
         try {
             URL iconUrl = new URL(QuickSnipConstants.BASE_URL + name);
             return SVGLoader.load(iconUrl, JBUI.scale(1));
@@ -119,7 +119,12 @@ public class DefaultInformationFetcher implements InformationFetcher {
                     String author = snippetObject.get("author").getAsString();
                     String code = snippetObject.get("code").getAsString();
 
-                    CachedSnippet cachedSnippet = new CachedSnippet(title, description, author, code);
+                    JsonArray tagsArray = snippetObject.get("tags").getAsJsonArray();
+                    List<String> tags = new ArrayList<>();
+
+                    tagsArray.forEach(tag -> tags.add(tag.getAsString()));
+
+                    CachedSnippet cachedSnippet = new CachedSnippet(title, description, author, code, tags);
                     snippets.add(cachedSnippet);
                 }
 
