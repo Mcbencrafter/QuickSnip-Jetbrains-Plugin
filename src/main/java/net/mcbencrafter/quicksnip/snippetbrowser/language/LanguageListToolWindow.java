@@ -44,7 +44,7 @@ public class LanguageListToolWindow implements ToolWindowFactory {
         languageList.setCellRenderer(new LanguageListCellRenderer());
 
         panel.add(
-                languageList,
+                new JScrollPane(languageList),
                 BorderLayout.CENTER
         );
 
