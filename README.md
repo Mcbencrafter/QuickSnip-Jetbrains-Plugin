@@ -22,6 +22,7 @@ I'm not the best when it comes to designing things, I'd also love to hear your d
 
 ## TODO
 - syntax highlighting in snippets
+- sublanguage support
 - local snippet saving allowing for offline use
 - search feature
 - code analysis for snippet suggestions (future idea)
